@@ -8,7 +8,7 @@ defmodule GraphqlWeb.Schema.Types do
     field(:phones, list_of(:phone)) do
       arg(:id, :integer)
       
-      resolve(&GraphqlWeb.Controller.UserController.get_phones/3)
+      resolve(&GraphqlWeb.UserController.get_phones/3)
     end
   end
   object :phone do

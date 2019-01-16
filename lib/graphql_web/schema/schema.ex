@@ -5,10 +5,10 @@ defmodule GraphqlWeb.Schema do
   query do
     field :user, type: :user do
       arg(:id, non_null(:integer))
-      resolve(&GraphqlWeb.Controller.UserController.get/2)
+      resolve(&GraphqlWeb.UserController.get/2)
     end
     field :user, type: :user do
-      resolve(&GraphqlWeb.Controller.UserController.list/2)
+      resolve(&GraphqlWeb.UserController.list/2)
     end
   end
   # mutation actions
@@ -17,7 +17,7 @@ defmodule GraphqlWeb.Schema do
       arg(:username, non_null(:string))
       arg(:job_title, :string)
       arg(:phones, list_of(:string))
-      resolve(&GraphqlWeb.Controller.UserController.create/2)
+      resolve(&GraphqlWeb.UserController.create/2)
     end
 
     field :update_user, type: :user do
@@ -26,13 +26,13 @@ defmodule GraphqlWeb.Schema do
       arg(:job_title, :string)
       arg(:phones, list_of(:string))
 
-      resolve(&GraphqlWeb.Controller.UserController.update/2)
+      resolve(&GraphqlWeb.UserController.update/2)
     end
 
     field :delete_user, type: :user do
       arg(:id, non_null(:integer))
 
-      resolve(&GraphqlWeb.Controller.UserController.delete/2)
+      resolve(&GraphqlWeb.UserController.delete/2)
     end
 
   end
