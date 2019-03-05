@@ -15,4 +15,10 @@ defmodule GraphqlWeb.Schema.Types do
     field(:id, :integer)
     field(:phone_number, :string)
   end
+
+  object :link do
+    field :id, non_null(:id)
+    field :url, non_null(:string)
+    field :description, non_null(:string)
+  end
 end
