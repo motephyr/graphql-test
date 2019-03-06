@@ -13,8 +13,14 @@ defmodule GraphqlWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql do
+    plug GraphqlWeb.Context
+  end
+
   # Graphql Endpoint
   scope "/graphql" do
+    pipe_through :graphql
+
     forward("/", Absinthe.Plug, schema: GraphqlWeb.Schema)
   end
   

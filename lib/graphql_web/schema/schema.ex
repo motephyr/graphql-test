@@ -6,6 +6,14 @@ defmodule GraphqlWeb.Schema do
   
   # query actions
   query do
+    field :current_user, :user do
+      resolve(fn 
+        _, %{context: %{current_user: current_user}} ->
+          GraphqlWeb.UserController.get(%{id: current_user.id} ,nil)
+        _,_ -> 
+          {:ok, nil}
+      end)
+    end
     field :user, type: :user do
       arg(:id, non_null(:integer))
       resolve(&GraphqlWeb.UserController.get/2)
