@@ -1,5 +1,7 @@
 defmodule GraphqlWeb.Schema.Types do
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation, :classic
+
 
   object :user do
     field(:id, :integer)
@@ -21,4 +23,8 @@ defmodule GraphqlWeb.Schema.Types do
     field :url, non_null(:string)
     field :description, non_null(:string)
   end
+
+  connection node_type: :link
+
+
 end

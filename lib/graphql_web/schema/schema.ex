@@ -1,17 +1,22 @@
 defmodule GraphqlWeb.Schema do
   use Absinthe.Schema
+  use Absinthe.Relay.Schema, :classic
+
   import_types(GraphqlWeb.Schema.Types)
+  
   # query actions
   query do
     field :user, type: :user do
       arg(:id, non_null(:integer))
       resolve(&GraphqlWeb.UserController.get/2)
     end
-    field :user, type: :user do
+    field :users, type: list_of(:user) do
       resolve(&GraphqlWeb.UserController.list/2)
     end
-    field :all_links, non_null(list_of(non_null(:link))) do
-      resolve &GraphqlWeb.NewsResolver.all_links/3
+    # field :all_links, non_null(list_of(non_null(:link)))
+    
+    connection field :links, node_type: :link do
+      resolve(&GraphqlWeb.NewsResolver.all_links/2)
     end
   end
   # mutation actions

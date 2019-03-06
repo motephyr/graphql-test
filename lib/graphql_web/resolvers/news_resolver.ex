@@ -1,10 +1,12 @@
 defmodule GraphqlWeb.NewsResolver do
   alias Graphql.News
+  alias Absinthe.Relay
+  alias Graphql.Repo
   require IEx
 
-  def all_links(_root, _args, _info) do
-    links = News.list_links()
-    {:ok, links}
+  def all_links(args, _info) do
+    News.Link
+    |> Relay.Connection.from_query(&Repo.all/1, args)
   end
 
   def create_link(args, info) do
