@@ -209,4 +209,20 @@ defmodule Graphql.Profile do
     |> where([u], u.user_id == ^user_id)
     |> Repo.all
   end
+
+
+
+  def data() do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+  def query(User, _) do
+    from p in User, where: is_nil(p.deleted_at)
+  end
+
+  def query(queryable, _params) do
+    queryable
+  end
+
+
+  
 end

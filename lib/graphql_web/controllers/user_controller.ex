@@ -6,7 +6,7 @@ defmodule GraphqlWeb.UserController do
     Profile.create_user(params)
   end
 
-  def list(params, _info) do
+  def list(_params, _info) do
     {:ok, Profile.list_users()}
   end
 
@@ -38,7 +38,7 @@ defmodule GraphqlWeb.UserController do
           |> List.wrap()
     }
   end
-  def get_phones(%Profile.User{} = user, params, _info) do
+  def get_phones(%Profile.User{} = user, _params, _info) do
     id = user.id
     {:ok, Profile.get_phones_by_user_id(id)}
   end

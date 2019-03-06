@@ -36,4 +36,11 @@ defmodule GraphqlWeb.Context do
     end
   end
 
+  alias Graphql.Profile
+
+
+  def dataloader() do
+    Dataloader.new
+    |> Dataloader.add_source(Profile, Profile.data())
+  end
 end

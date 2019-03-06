@@ -9,7 +9,7 @@ defmodule GraphqlWeb.NewsResolver do
     |> Relay.Connection.from_query(&Repo.all/1, args)
   end
 
-  def create_link(args, info) do
+  def create_link(args, _info) do
     case News.create_link(args) do
       {:ok, link} ->
         {:ok, link}

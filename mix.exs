@@ -47,7 +47,7 @@ defmodule Graphql.MixProject do
       {:absinthe_plug, "~> 1.4"}, # for phoenix route and graphiql
       {:absinthe_relay, "~> 1.4"},
       {:poison, "~> 3.1.0"},
-
+      {:dataloader, "~> 1.0.0"}
     ]
   end
 
